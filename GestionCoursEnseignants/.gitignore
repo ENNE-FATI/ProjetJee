@@ -43,3 +43,6 @@ target/
 .classpath
 .project
 .settings/
+
+# Configuration personnelle de la base de données
+src/main/resources/db.properties

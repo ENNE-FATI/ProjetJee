@@ -5,17 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Kiaalap - Modern Education Management Dashboard for Universities">
-    <meta name="keywords" content="education, dashboard, university, management, admin">
-    <meta name="author" content="Kiaalap">
-
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-    <link rel="preconnect" href="https://ui-avatars.com" crossorigin>
-    <link rel="dns-prefetch" href="https://flagcdn.com">
-
-    <title>Dashboard - Kiaalap Dashboard</title>
+    <title>Dashboard - Kiaalap</title>
 
     <link rel="icon" type="image/x-icon" href="assets/favicon-9EIT7vLh.ico">
-
     <script type="module" crossorigin src="assets/main-ZZRh_wak.js"></script>
     <script type="module" crossorigin src="assets/chart-runtime-BMJJQUfu.js"></script>
     <link rel="stylesheet" crossorigin href="assets/main-BV-wpnXD.css">
@@ -23,9 +15,9 @@
     <link rel="stylesheet" crossorigin href="assets/charts-layout-C732DjRu.css">
 </head>
 <body>
-    <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
-    <div class="search-backdrop" id="searchBackdrop"></div>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+<div class="search-backdrop" id="searchBackdrop"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
@@ -42,52 +34,54 @@
     </div>
 
     <nav class="sidebar-nav" aria-label="Main navigation">
+        <!-- 1. MENU MAIN (Lien direct) -->
         <div class="menu-section">
             <div class="menu-section-title">Main</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link has-submenu active" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#dashboardSubmenu" aria-expanded="true">
+                    <a class="nav-link active" href="dashboard.jsp">
                         <i class="bi bi-speedometer2"></i>
                         <span>Dashboard</span>
                     </a>
-                    <ul id="dashboardSubmenu" class="submenu collapse show list-unstyled">
-                        <li><a class="nav-link active" href="dashboard.jsp">Dashboard</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>
 
+        <!-- 2. MENU ACADEMIC -->
         <div class="menu-section">
             <div class="menu-section-title">Academic</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link has-submenu " href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#professorsSubmenu" aria-expanded="false">
+                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#professorsSubmenu" aria-expanded="false">
                         <i class="bi bi-person-badge"></i>
                         <span>Teachers</span>
                     </a>
-                    <ul id="professorsSubmenu" class="submenu collapse  list-unstyled">
-                        <li><a class="nav-link " href="listeEnseignants.jsp">All Teachers</a></li>
-                        <li><a class="nav-link " href="ajouterEnseignant.jsp">Add Teacher</a></li>
+                    <ul id="professorsSubmenu" class="submenu collapse list-unstyled">
+                        <li><a class="nav-link" href="listeEnseignants.jsp">All Teachers</a></li>
+                        <li><a class="nav-link" href="ajouterEnseignant.jsp">Add Teacher</a></li>
                     </ul>
                 </li>
+
+                <!-- Menu Courses relié au Servlet -->
                 <li class="nav-item">
-                    <a class="nav-link has-submenu " href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#coursesSubmenu" aria-expanded="false">
+                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#coursesSubmenu" aria-expanded="false">
                         <i class="bi bi-book"></i>
                         <span>Courses</span>
                     </a>
-                    <ul id="coursesSubmenu" class="submenu collapse  list-unstyled">
-                        <li><a class="nav-link " href="listeCours.jsp">All Courses</a></li>
-                        <li><a class="nav-link " href="ajouterCours.jsp">Add Course</a></li>
+                    <ul id="coursesSubmenu" class="submenu collapse list-unstyled">
+                        <li><a class="nav-link" href="<%= request.getContextPath() %>/admin/cours">All Courses</a></li>
+                        <li><a class="nav-link" href="<%= request.getContextPath() %>/admin/cours?action=ajouter">Add Course</a></li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link has-submenu " href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#affectationsSubmenu" aria-expanded="false">
+                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#affectationsSubmenu" aria-expanded="false">
                         <i class="bi bi-link-45deg"></i>
                         <span>Assignments</span>
                     </a>
-                    <ul id="affectationsSubmenu" class="submenu collapse  list-unstyled">
-                        <li><a class="nav-link " href="affectations.jsp">All Assignments</a></li>
-                        <li><a class="nav-link " href="ajouterAffectations.jsp">New Assignment</a></li>
+                    <ul id="affectationsSubmenu" class="submenu collapse list-unstyled">
+                        <li><a class="nav-link" href="affectations.jsp">All Assignments</a></li>
+                        <li><a class="nav-link" href="ajouterAffectations.jsp">New Assignment</a></li>
                     </ul>
                 </li>
             </ul>
@@ -97,7 +91,7 @@
             <div class="menu-section-title">Pages</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link " href="login.jsp">
+                    <a class="nav-link" href="login.jsp">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Logout</span>
                     </a>
@@ -128,24 +122,21 @@
 
             <!-- Right Actions -->
             <div class="d-flex align-items-center gap-2">
-                <!-- Quick Actions -->
                 <div class="dropdown">
                     <button type="button" class="btn btn-light btn-icon" data-bs-toggle="dropdown" aria-label="Quick actions">
                         <i class="bi bi-plus-lg"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="ajouterCours.jsp"><i class="bi bi-book me-2"></i>Add Course</a></li>
+                        <!-- Liens Quick Actions corrigés -->
+                        <li><a class="dropdown-item" href="<%= request.getContextPath() %>/admin/cours?action=ajouter"><i class="bi bi-book me-2"></i>Add Course</a></li>
                         <li><a class="dropdown-item" href="ajouterEnseignant.jsp"><i class="bi bi-person-badge me-2"></i>Add Teacher</a></li>
-                        <li><a class="dropdown-item" href="ajouterAffectation.jsp"><i class="bi bi-link-45deg me-2"></i>New Assignment</a></li>
+                        <li><a class="dropdown-item" href="ajouterAffectations.jsp"><i class="bi bi-link-45deg me-2"></i>New Assignment</a></li>
                     </ul>
                 </div>
 
-                <!-- User Menu -->
                 <div class="dropdown">
                     <button type="button" class="btn btn-light d-flex align-items-center" data-bs-toggle="dropdown" aria-label="Admin account menu">
-                        <span class="user-avatar me-2">
-                            AD
-                        </span>
+                        <span class="user-avatar me-2">AD</span>
                         <span class="d-none d-md-inline">Admin User</span>
                         <i class="bi bi-chevron-down ms-1"></i>
                     </button>
@@ -166,7 +157,7 @@
                 <p class="text-muted text-sm">Welcome back! Here's a summary of your institution's activity.</p>
             </div>
 
-            <!-- Stats Cards Row (MIS À JOUR) -->
+            <!-- Stats Cards Row -->
             <div class="dashboard-row">
                 <div class="dashboard-grid grid-cols-4">
                     <div class="stats-card">
@@ -207,7 +198,7 @@
                 </div>
             </div>
 
-            <!-- Quick Actions Row (SUGGESTION POUR LA SOUTENANCE) -->
+            <!-- Quick Actions Row -->
             <div class="dashboard-row">
                 <div class="dashboard-card">
                     <div class="dashboard-card-header">
@@ -218,10 +209,11 @@
                             <a href="ajouterEnseignant.jsp" class="btn btn-primary btn-lg">
                                 <i class="bi bi-person-plus me-2"></i>Add New Teacher
                             </a>
-                            <a href="ajouterCours.jsp" class="btn btn-success btn-lg">
+                            <!-- Lien corrigé vers le Servlet -->
+                            <a href="<%= request.getContextPath() %>/admin/cours?action=ajouter" class="btn btn-success btn-lg">
                                 <i class="bi bi-book me-2"></i>Create New Course
                             </a>
-                            <a href="ajouterAffectation.jsp" class="btn btn-info btn-lg text-white">
+                            <a href="ajouterAffectations.jsp" class="btn btn-info btn-lg text-white">
                                 <i class="bi bi-link me-2"></i>Assign Course to Teacher
                             </a>
                         </div>
@@ -298,7 +290,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="dashboard-footer">
         <div class="container-fluid">
             <div class="row">

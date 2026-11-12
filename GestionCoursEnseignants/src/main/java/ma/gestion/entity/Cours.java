@@ -1,4 +1,3 @@
-
 package ma.gestion.entity;
 
 import jakarta.persistence.*;
@@ -21,13 +20,13 @@ public class Cours {
 
     private int volumeHoraire;
 
-    @OneToMany(mappedBy = "cours")
+    @OneToMany(mappedBy = "cours", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Affectation> affectations = new HashSet<>();
 
-    @OneToMany(mappedBy = "cours")
+    @OneToMany(mappedBy = "cours", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<SeanceZoom> seancesZoom = new HashSet<>();
 
-    @OneToMany(mappedBy = "cours")
+    @OneToMany(mappedBy = "cours", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Ressource> ressources = new HashSet<>();
 
     public Cours() {
@@ -39,59 +38,24 @@ public class Cours {
         this.volumeHoraire = volumeHoraire;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getCode() { return code; }
+    public void setCode(String code) { this.code = code; }
 
-    public String getCode() {
-        return code;
-    }
+    public String getIntitule() { return intitule; }
+    public void setIntitule(String intitule) { this.intitule = intitule; }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+    public int getVolumeHoraire() { return volumeHoraire; }
+    public void setVolumeHoraire(int volumeHoraire) { this.volumeHoraire = volumeHoraire; }
 
-    public String getIntitule() {
-        return intitule;
-    }
+    public Set<Affectation> getAffectations() { return affectations; }
+    public void setAffectations(Set<Affectation> affectations) { this.affectations = affectations; }
 
-    public void setIntitule(String intitule) {
-        this.intitule = intitule;
-    }
+    public Set<SeanceZoom> getSeancesZoom() { return seancesZoom; }
+    public void setSeancesZoom(Set<SeanceZoom> seancesZoom) { this.seancesZoom = seancesZoom; }
 
-    public int getVolumeHoraire() {
-        return volumeHoraire;
-    }
-
-    public void setVolumeHoraire(int volumeHoraire) {
-        this.volumeHoraire = volumeHoraire;
-    }
-
-    public Set<Affectation> getAffectations() {
-        return affectations;
-    }
-
-    public void setAffectations(Set<Affectation> affectations) {
-        this.affectations = affectations;
-    }
-
-    public Set<SeanceZoom> getSeancesZoom() {
-        return seancesZoom;
-    }
-
-    public void setSeancesZoom(Set<SeanceZoom> seancesZoom) {
-        this.seancesZoom = seancesZoom;
-    }
-
-    public Set<Ressource> getRessources() {
-        return ressources;
-    }
-
-    public void setRessources(Set<Ressource> ressources) {
-        this.ressources = ressources;
-    }
+    public Set<Ressource> getRessources() { return ressources; }
+    public void setRessources(Set<Ressource> ressources) { this.ressources = ressources; }
 }

@@ -5,23 +5,16 @@
 <head>
   <meta charset="utf-8">
   <title>Login - Educenter</title>
-
-  <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <!-- ** Plugins Needed for the Project ** -->
+  <!-- CSS -->
   <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="plugins/slick/slick.css">
   <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="plugins/animate/animate.css">
   <link rel="stylesheet" href="plugins/aos/aos.css">
   <link rel="stylesheet" href="plugins/venobox/venobox.css">
-
-  <!-- Main Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
-  
-  <!--Favicon-->
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -38,7 +31,6 @@
       color: #ffbc3b !important;
       text-decoration: none;
     }
-    /* Style pour la carte de login */
     .login-card {
         background: #fff;
         padding: 40px;
@@ -51,7 +43,7 @@
 
 <body>
   
-<!-- header (Le même menu que l'accueil) -->
+<!-- header -->
 <header class="fixed-top header">
   <div class="navigation w-100">
     <div class="container">
@@ -66,7 +58,6 @@
             <li class="nav-item"><a class="nav-link" href="about.jsp">À propos</a></li>
             <li class="nav-item"><a class="nav-link" href="index.jsp#courses-section">Cours</a></li>
             <li class="nav-item"><a class="nav-link" href="index.jsp#contact-section">Contact</a></li>
-            <!-- Bouton Login (qui est actif ici) -->
             <li class="nav-item"><a class="btn-login text-warning" href="login.jsp">Login</a></li>
           </ul>
         </div>
@@ -76,7 +67,7 @@
 </header>
 <!-- /header -->
 
-<!-- Contenu Principal : Formulaire de Login -->
+<!-- Login Form -->
 <section class="section">
     <div class="container">
         <div class="row justify-content-center">
@@ -87,7 +78,8 @@
                         <p class="text-muted">Please login to your account</p>
                     </div>
 
-                    <form action="../login" method="POST">
+                    <!-- Formulaire envoyant les données au Servlet /login -->
+                    <form action="${pageContext.request.contextPath}/login" method="POST">
                         <div class="form-group mb-3">
                             <label for="username">Email Address</label>
                             <input type="email" class="form-control" id="username" name="username" placeholder="example@kiaalap.edu" required>
@@ -98,50 +90,31 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-block w-100">Sign In</button>
                     </form>
-
-                    <!-- Boutons de simulation pour le test (à enlever plus tard) -->
-                    <div class="text-center mt-4 pt-3 border-top">
-                        <p class="text-muted small mb-2">Simulate Login As:</p>
-                        <a href="../admin/dashboard.jsp" class="btn btn-sm btn-outline-primary">Admin Space</a>
-                        <a href="../enseignant/index.jsp" class="btn btn-sm btn-outline-success">Teacher Space</a>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- footer (Le même que l'accueil) -->
+<!-- footer -->
 <footer>
   <div class="footer bg-footer section border-bottom">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-sm-8 mb-5 mb-lg-0">
           <a class="logo-footer" href="index.jsp"><img class="img-fluid mb-4" src="images/logo.png" alt="logo"></a>
-          <ul class="list-unstyled">
-            <li class="mb-2">23621 15 Mile Rd #C104, Clinton MI, 48035, New York, USA</li>
-            <li class="mb-2">+1 (2) 345 6789</li>
-            <li class="mb-2">contact@yourdomain.com</li>
-          </ul>
         </div>
       </div>
     </div>
   </div>
 </footer>
-<!-- /footer -->
 
-<!-- jQuery -->
+<!-- JS -->
 <script src="plugins/jQuery/jquery.min.js"></script>
-<!-- Bootstrap JS -->
 <script src="plugins/bootstrap/bootstrap.min.js"></script>
-<!-- slick slider -->
 <script src="plugins/slick/slick.min.js"></script>
-<!-- aos -->
 <script src="plugins/aos/aos.js"></script>
-<!-- venobox popup -->
 <script src="plugins/venobox/venobox.min.js"></script>
-
-<!-- Main Script -->
 <script src="js/script.js"></script>
 
 </body>

@@ -18,11 +18,8 @@
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
   <style>
-    /* Navbar fixe avec fond blanc */
     .header { position: fixed !important; top: 0; width: 100%; z-index: 9999; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     body { padding-top: 80px; }
-    
-    /* Bouton Login */
     .btn-login {
       color: #333 !important;
       font-weight: 700;
@@ -32,7 +29,7 @@
       transition: all 0.3s ease;
     }
     .btn-login:hover {
-      color: #ffbc3b !important; /* Devient jaune au survol */
+      color: #ffbc3b !important;
       background-color: transparent !important;
       text-decoration: underline;
     }
@@ -52,21 +49,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav ml-auto text-center align-items-center">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.jsp">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.jsp">About</a> <!-- Lien direct vers la page -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#courses-section">Courses</a> <!-- Lien vers la section -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.jsp">Contact</a> <!-- Lien direct vers la page -->
-            </li>
-            <li class="nav-item">
-              <a class="btn-login" href="login.jsp">Login</a>
-            </li>
+            <li class="nav-item active"><a class="nav-link" href="index.jsp">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.jsp">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#courses-section">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a></li>
+            <li class="nav-item"><a class="btn-login" href="login.jsp">Login</a></li>
           </ul>
         </div>
       </nav>
@@ -93,7 +80,7 @@
 </section>
 <!-- /hero slider -->
 
-<!-- about us (Section sur l'accueil) -->
+<!-- about us -->
 <section class="section" id="about-section">
   <div class="container">
     <div class="row align-items-center">
@@ -110,7 +97,7 @@
 </section>
 <!-- /about us -->
 
-<!-- courses (Section sur l'accueil) -->
+<!-- courses -->
 <section class="section-sm" id="courses-section">
   <div class="container">
     <div class="row">

@@ -1,4 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    // 1. Désactiver le cache du navigateur pour cette page
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+
+    // 2. Vérification de sécurité
+    if (session.getAttribute("adminConnecte") == null) {
+        response.sendRedirect(request.getContextPath() + "/public/login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +51,7 @@
             <div class="menu-section-title">Main</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="dashboard.jsp">
+                    <a class="nav-link active" href="<%= request.getContextPath() %>/admin/dashboard.jsp">
                         <i class="bi bi-speedometer2"></i>
                         <span>Dashboard</span>
                     </a>
@@ -51,14 +63,16 @@
         <div class="menu-section">
             <div class="menu-section-title">Academic</div>
             <ul class="nav flex-column">
+
+                <!-- Menu Teachers -->
                 <li class="nav-item">
                     <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#professorsSubmenu" aria-expanded="false">
                         <i class="bi bi-person-badge"></i>
                         <span>Teachers</span>
                     </a>
                     <ul id="professorsSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="listeEnseignants.jsp">All Teachers</a></li>
-                        <li><a class="nav-link" href="ajouterEnseignant.jsp">Add Teacher</a></li>
+                        <li><a class="nav-link" href="<%= request.getContextPath() %>/admin/listeEnseignants.jsp">All Teachers</a></li>
+                        <li><a class="nav-link" href="<%= request.getContextPath() %>/admin/ajouterEnseignant.jsp">Add Teacher</a></li>
                     </ul>
                 </li>
 
@@ -74,24 +88,26 @@
                     </ul>
                 </li>
 
+                <!-- Menu Assignments -->
                 <li class="nav-item">
                     <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#affectationsSubmenu" aria-expanded="false">
                         <i class="bi bi-link-45deg"></i>
                         <span>Assignments</span>
                     </a>
                     <ul id="affectationsSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="affectations.jsp">All Assignments</a></li>
-                        <li><a class="nav-link" href="ajouterAffectations.jsp">New Assignment</a></li>
+                        <li><a class="nav-link" href="<%= request.getContextPath() %>/admin/affectations.jsp">All Assignments</a></li>
+                        <li><a class="nav-link" href="<%= request.getContextPath() %>/admin/ajouterAffectations.jsp">New Assignment</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
 
+        <!-- 3. MENU PAGES (Logout) -->
         <div class="menu-section">
             <div class="menu-section-title">Pages</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/logout">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Logout</span>
                     </a>
@@ -112,7 +128,7 @@
 
             <nav aria-label="Header breadcrumb" class="d-none d-lg-block ms-3">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="dashboard.jsp">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/admin/dashboard.jsp">Home</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </nav>
@@ -122,18 +138,19 @@
 
             <!-- Right Actions -->
             <div class="d-flex align-items-center gap-2">
+                <!-- Quick Actions -->
                 <div class="dropdown">
                     <button type="button" class="btn btn-light btn-icon" data-bs-toggle="dropdown" aria-label="Quick actions">
                         <i class="bi bi-plus-lg"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <!-- Liens Quick Actions corrigés -->
                         <li><a class="dropdown-item" href="<%= request.getContextPath() %>/admin/cours?action=ajouter"><i class="bi bi-book me-2"></i>Add Course</a></li>
-                        <li><a class="dropdown-item" href="ajouterEnseignant.jsp"><i class="bi bi-person-badge me-2"></i>Add Teacher</a></li>
-                        <li><a class="dropdown-item" href="ajouterAffectations.jsp"><i class="bi bi-link-45deg me-2"></i>New Assignment</a></li>
+                        <li><a class="dropdown-item" href="<%= request.getContextPath() %>/admin/ajouterEnseignant.jsp"><i class="bi bi-person-badge me-2"></i>Add Teacher</a></li>
+                        <li><a class="dropdown-item" href="<%= request.getContextPath() %>/admin/ajouterAffectations.jsp"><i class="bi bi-link-45deg me-2"></i>New Assignment</a></li>
                     </ul>
                 </div>
 
+                <!-- User Menu -->
                 <div class="dropdown">
                     <button type="button" class="btn btn-light d-flex align-items-center" data-bs-toggle="dropdown" aria-label="Admin account menu">
                         <span class="user-avatar me-2">AD</span>
@@ -141,7 +158,7 @@
                         <i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="login.jsp"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item" href="<%= request.getContextPath() %>/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -206,14 +223,13 @@
                     </div>
                     <div class="dashboard-card-body">
                         <div class="d-flex gap-3 flex-wrap">
-                            <a href="ajouterEnseignant.jsp" class="btn btn-primary btn-lg">
+                            <a href="<%= request.getContextPath() %>/admin/ajouterEnseignant.jsp" class="btn btn-primary btn-lg">
                                 <i class="bi bi-person-plus me-2"></i>Add New Teacher
                             </a>
-                            <!-- Lien corrigé vers le Servlet -->
                             <a href="<%= request.getContextPath() %>/admin/cours?action=ajouter" class="btn btn-success btn-lg">
                                 <i class="bi bi-book me-2"></i>Create New Course
                             </a>
-                            <a href="ajouterAffectations.jsp" class="btn btn-info btn-lg text-white">
+                            <a href="<%= request.getContextPath() %>/admin/ajouterAffectations.jsp" class="btn btn-info btn-lg text-white">
                                 <i class="bi bi-link me-2"></i>Assign Course to Teacher
                             </a>
                         </div>
@@ -227,7 +243,7 @@
                 <div class="dashboard-card">
                     <div class="dashboard-card-header d-flex justify-content-between align-items-center">
                         <h5 class="dashboard-card-title mb-0">Recently Added Teachers</h5>
-                        <a href="listeEnseignants.jsp" class="btn btn-outline-primary btn-sm">View All</a>
+                        <a href="<%= request.getContextPath() %>/admin/listeEnseignants.jsp" class="btn btn-outline-primary btn-sm">View All</a>
                     </div>
                     <div class="dashboard-card-body">
                         <div class="list-group list-group-flush">
@@ -257,7 +273,7 @@
                 <div class="dashboard-card">
                     <div class="dashboard-card-header d-flex justify-content-between align-items-center">
                         <h5 class="dashboard-card-title mb-0">Recent Course Assignments</h5>
-                        <a href="affectations.jsp" class="btn btn-outline-primary btn-sm">View All</a>
+                        <a href="<%= request.getContextPath() %>/admin/affectations.jsp" class="btn btn-outline-primary btn-sm">View All</a>
                     </div>
                     <div class="dashboard-card-body">
                         <div class="list-group list-group-flush">

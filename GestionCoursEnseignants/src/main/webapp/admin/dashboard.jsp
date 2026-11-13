@@ -41,9 +41,7 @@
             <div class="menu-section-title">Main</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="${pageContext.request.contextPath}/admin/dashboard">
-
-                    
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/dashboard">
                         <i class="bi bi-speedometer2"></i><span>Dashboard</span>
                     </a>
                 </li>
@@ -68,6 +66,16 @@
                     <ul id="coursesSubmenu" class="submenu collapse list-unstyled">
                         <li><a class="nav-link" href="#">All Courses</a></li>
                         <li><a class="nav-link" href="#">Add Course</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#assignmentsSubmenu" aria-expanded="false">
+                        <i class="bi bi-link-45deg"></i><span>Assignments</span>
+                    </a>
+                    <ul id="assignmentsSubmenu" class="submenu collapse list-unstyled">
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/affectations">All Assignments</a></li>
+                        <!-- Lien vers le Servlet pour charger les listes -->
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation">New Assignment</a></li>
                     </ul>
                 </li>
             </ul>
@@ -114,7 +122,6 @@
                 <p class="text-muted text-sm">Welcome back! Here's a summary of your institution's activity.</p>
             </div>
 
-            <!-- Stats Cards (avec les vraies données) -->
             <div class="dashboard-row">
                 <div class="dashboard-grid grid-cols-4">
                     <div class="stats-card">
@@ -144,7 +151,6 @@
                 </div>
             </div>
 
-            <!-- Quick Actions (RESTAURÉ) -->
             <div class="dashboard-row">
                 <div class="dashboard-card">
                     <div class="dashboard-card-header">
@@ -163,7 +169,6 @@
                 </div>
             </div>
 
-            <!-- Recent Activity (RESTAURÉ) -->
             <div class="dashboard-grid grid-cols-2">
                 <div class="dashboard-card">
                     <div class="dashboard-card-header d-flex justify-content-between align-items-center">

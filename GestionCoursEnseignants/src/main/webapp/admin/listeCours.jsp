@@ -44,7 +44,7 @@
             <div class="menu-section-title">Main</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= request.getContextPath() %>/admin/dashboard.jsp">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/admin/dashboard">
                         <i class="bi bi-speedometer2"></i>
                         <span>Dashboard</span>
                     </a>
@@ -56,7 +56,7 @@
             <div class="menu-section-title">Academic</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= request.getContextPath() %>/admin/listeEnseignants.jsp">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/listeEnseignants">
                         <i class="bi bi-person-badge"></i>
                         <span>Teachers</span>
                     </a>
@@ -74,7 +74,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= request.getContextPath() %>/admin/affectations.jsp">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/affectations">
                         <i class="bi bi-link-45deg"></i>
                         <span>Assignments</span>
                     </a>
@@ -86,7 +86,7 @@
             <div class="menu-section-title">Pages</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= request.getContextPath() %>/login.jsp">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/logout">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Logout</span>
                     </a>
@@ -106,7 +106,7 @@
 
             <nav aria-label="Header breadcrumb" class="d-none d-lg-block ms-3">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="dashboard.jsp">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/admin/dashboard">Home</a></li>
                     <li class="breadcrumb-item active">All Courses</li>
                 </ol>
             </nav>
@@ -122,7 +122,7 @@
                         <i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="<%= request.getContextPath() %>/login.jsp"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item" href="<%= request.getContextPath() %>/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>

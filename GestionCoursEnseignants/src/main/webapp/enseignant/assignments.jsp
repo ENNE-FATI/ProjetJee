@@ -19,7 +19,7 @@
                 <li><a class="side-link" href="${pageContext.request.contextPath}/classesEnseignant"><span class="side-label">Classes</span></a></li>
                 <li><a class="side-link" href="${pageContext.request.contextPath}/gradebook"><span class="side-label">Gradebook</span></a></li>
                 <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/assignments.jsp" aria-current="page"><span class="side-label">Assignments</span></a></li>
-                <li><a class="side-link" href="${pageContext.request.contextPath}/public/login.jsp"><span class="side-label">Sign out</span></a></li>
+                <li><a class="side-link" href="${pageContext.request.contextPath}/logout"><span class="side-label">Sign out</span></a></li>
             </ul>
         </nav>
     </aside>

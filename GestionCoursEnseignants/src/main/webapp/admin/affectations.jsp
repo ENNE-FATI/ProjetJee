@@ -39,7 +39,7 @@
             <div class="menu-section-title">Main</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/dashboard">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/dashboard">
                         <i class="bi bi-speedometer2"></i><span>Dashboard</span>
                     </a>
                 </li>
@@ -62,8 +62,8 @@
                         <i class="bi bi-book"></i><span>Courses</span>
                     </a>
                     <ul id="coursesSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="#">All Courses</a></li>
-                        <li><a class="nav-link" href="#">Add Course</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours">All Courses</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours?action=ajouter">Add Course</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -72,7 +72,7 @@
                     </a>
                     <ul id="assignmentsSubmenu" class="submenu collapse show list-unstyled">
                         <li><a class="nav-link active" href="${pageContext.request.contextPath}/affectations">All Assignments</a></li>
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation.jsp">New Assignment</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation">New Assignment</a></li>
                     </ul>
                 </li>
             </ul>
@@ -80,7 +80,7 @@
         <div class="menu-section">
             <div class="menu-section-title">Pages</div>
             <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/login.jsp"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
             </ul>
         </div>
     </nav>
@@ -93,7 +93,7 @@
             <button type="button" class="hamburger-menu" id="sidebarToggle"><i class="bi bi-list"></i></button>
             <nav aria-label="Header breadcrumb" class="d-none d-lg-block ms-3">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/dashboard">Home</a></li>
+                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/dashboard">Home</a></li>
                     <li class="breadcrumb-item active">All Assignments</li>
                 </ol>
             </nav>

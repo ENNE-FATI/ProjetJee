@@ -41,7 +41,7 @@
             <div class="menu-section-title">Main</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="${pageContext.request.contextPath}/dashboard">
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/admin/dashboard">
                         <i class="bi bi-speedometer2"></i><span>Dashboard</span>
                     </a>
                 </li>
@@ -64,8 +64,8 @@
                         <i class="bi bi-book"></i><span>Courses</span>
                     </a>
                     <ul id="coursesSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="#">All Courses</a></li>
-                        <li><a class="nav-link" href="#">Add Course</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours">All Courses</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours?action=ajouter">Add Course</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -83,7 +83,7 @@
         <div class="menu-section">
             <div class="menu-section-title">Pages</div>
             <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/login.jsp"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
             </ul>
         </div>
     </nav>
@@ -96,7 +96,7 @@
             <button type="button" class="hamburger-menu" id="sidebarToggle"><i class="bi bi-list"></i></button>
             <nav aria-label="Header breadcrumb" class="d-none d-lg-block ms-3">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/dashboard">Home</a></li>
+                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/dashboard">Home</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </nav>
@@ -108,7 +108,7 @@
                         <span class="user-avatar me-2">AD</span><span class="d-none d-md-inline">Admin User</span><i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/public/login.jsp"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -138,13 +138,13 @@
                     </div>
                     <div class="stats-card">
                         <div class="stats-card-label">Total Assignments</div>
-                        <div class="stats-card-value">0</div>
+                        <div class="stats-card-value">${totalAffectations != null ? totalAffectations : 0}</div>
                         <span class="stats-card-change positive">+5 this week</span>
                         <div class="progress-custom"><div class="progress-bar-custom bg-info" style="width: 60%"></div></div>
                     </div>
                     <div class="stats-card">
                         <div class="stats-card-label">Hours Assigned</div>
-                        <div class="stats-card-value">1,200 h</div>
+                        <div class="stats-card-value">${totalHeures != null ? totalHeures : 0} h</div>
                         <span class="stats-card-change positive">+80h this week</span>
                         <div class="progress-custom"><div class="progress-bar-custom bg-warning" style="width: 80%"></div></div>
                     </div>
@@ -161,7 +161,7 @@
                             <a href="${pageContext.request.contextPath}/admin/ajouterEnseignant.jsp" class="btn btn-primary btn-lg">
                                 <i class="bi bi-person-plus me-2"></i>Add New Teacher
                             </a>
-                            <a href="#" class="btn btn-success btn-lg">
+                            <a href="${pageContext.request.contextPath}/admin/cours?action=ajouter" class="btn btn-success btn-lg">
                                 <i class="bi bi-book me-2"></i>Create New Course
                             </a>
                         </div>
@@ -199,20 +199,25 @@
                 <div class="dashboard-card">
                     <div class="dashboard-card-header d-flex justify-content-between align-items-center">
                         <h5 class="dashboard-card-title mb-0">Recent Course Assignments</h5>
-                        <a href="#" class="btn btn-outline-primary btn-sm">View All</a>
+                        <a href="${pageContext.request.contextPath}/affectations" class="btn btn-outline-primary btn-sm">View All</a>
                     </div>
                     <div class="dashboard-card-body">
                         <div class="list-group list-group-flush">
-                            <div class="list-group-item d-flex align-items-center px-0 py-3">
-                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                    <i class="bi bi-code-slash" style="color: #0d6efd;"></i>
+                            <c:forEach var="aff" items="${derniersAffectations}">
+                                <div class="list-group-item d-flex align-items-center px-0 py-3">
+                                    <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                        <i class="bi bi-book" style="color: #0d6efd;"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1">${aff[0]} - ${aff[1]}</h6>
+                                        <small class="text-muted">Assigned to ${aff[3]} ${aff[2]}</small>
+                                    </div>
+                                    <span class="badge bg-success">Active</span>
                                 </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">Java Programming</h6>
-                                    <small class="text-muted">Assigned to Dr. Smith</small>
-                                </div>
-                                <span class="badge bg-success">Active</span>
-                            </div>
+                            </c:forEach>
+                            <c:if test="${empty derniersAffectations}">
+                                <p class="text-muted text-center p-3">Aucune affectation pour le moment.</p>
+                            </c:if>
                         </div>
                     </div>
                 </div>

@@ -19,9 +19,8 @@ import java.util.List;
 public class ClassesEnseignantServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession httpSession = request.getSession(false);
-        Enseignant enseignant = (Enseignant) httpSession.getAttribute("enseignantConnecte");
+        Enseignant enseignant = (httpSession == null) ? null : (Enseignant) httpSession.getAttribute("enseignantConnecte");
 
-        // Sécurité : si pas connecté, on renvoie au login
         if (enseignant == null) {
             response.sendRedirect(request.getContextPath() + "/public/login.jsp");
             return;
@@ -29,8 +28,10 @@ public class ClassesEnseignantServlet extends HttpServlet {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            // Requête pour trouver les cours affectés à cet enseignant
-            Query<Affectation> query = session.createQuery("from Affectation where enseignant.id = :id", Affectation.class);
+            // join fetch : évite la LazyInitializationException dans classes.jsp
+            Query<Affectation> query = session.createQuery(
+                    "select a from Affectation a join fetch a.cours join fetch a.anneeUniversitaire where a.enseignant.id = :id",
+                    Affectation.class);
             query.setParameter("id", enseignant.getId());
             List<Affectation> listeClasses = query.list();
 

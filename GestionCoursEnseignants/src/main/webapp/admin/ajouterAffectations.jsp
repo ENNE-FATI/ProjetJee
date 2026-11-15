@@ -66,7 +66,7 @@
         <div class="menu-section">
             <div class="menu-section-title">Pages</div>
             <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/login.jsp"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
             </ul>
         </div>
     </nav>

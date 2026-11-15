@@ -51,8 +51,8 @@ public class CoursServlet extends HttpServlet {
             case "supprimer":
                 try {
                     int id = Integer.parseInt(request.getParameter("id"));
-                    coursService.supprimerCours(id);
-                    response.sendRedirect(request.getContextPath() + "/admin/cours?msg=supprime");
+                    boolean ok = coursService.supprimerCours(id);
+                    response.sendRedirect(request.getContextPath() + "/admin/cours?msg=" + (ok ? "supprime" : "erreur"));
                 } catch (Exception e) {
                     response.sendRedirect(request.getContextPath() + "/admin/cours?msg=erreur");
                 }

@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             // On stocke cet objet en session
             session.setAttribute("adminConnecte", admin);
 
-            response.sendRedirect(request.getContextPath() + "/admin/dashboard.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/dashboard");
             return;
         }
 

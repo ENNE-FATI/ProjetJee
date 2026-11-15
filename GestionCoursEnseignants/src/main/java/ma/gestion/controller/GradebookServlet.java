@@ -24,7 +24,7 @@ public class GradebookServlet extends HttpServlet {
         // 1. Vérifier si l'enseignant est connecté
         HttpSession httpSession = request.getSession(false);
         if (httpSession == null || httpSession.getAttribute("enseignantConnecte") == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/public/login.jsp");
             return;
         }
 

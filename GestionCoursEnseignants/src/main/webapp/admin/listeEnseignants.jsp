@@ -77,8 +77,8 @@
                         <span>Courses</span>
                     </a>
                     <ul id="coursesSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="#">All Courses</a></li>
-                        <li><a class="nav-link" href="#">Add Course</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours">All Courses</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours?action=ajouter">Add Course</a></li>
                     </ul>
                 </li>
             </ul>
@@ -88,7 +88,7 @@
             <div class="menu-section-title">Pages</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/public/login.jsp">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/logout">
                         <i class="bi bi-box-arrow-right"></i>
                         <span>Logout</span>
                     </a>
@@ -105,7 +105,7 @@
             <button type="button" class="hamburger-menu" id="sidebarToggle" aria-label="Toggle sidebar"><i class="bi bi-list"></i></button>
             <nav aria-label="Header breadcrumb" class="d-none d-lg-block ms-3">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/dashboard.jsp">Home</a></li>
+                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/dashboard">Home</a></li>
                     <li class="breadcrumb-item active">All professors</li>
                 </ol>
             </nav>
@@ -117,7 +117,7 @@
                         <span class="user-avatar me-2">AD</span><span class="d-none d-md-inline">Admin</span><i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/public/login.jsp"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>

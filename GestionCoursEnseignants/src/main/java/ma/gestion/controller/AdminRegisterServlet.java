@@ -38,7 +38,7 @@ public class AdminRegisterServlet extends HttpServlet {
                 return;
             }
 
-            // 2. Créer et enregistrer le nouvel Administrateur
+
             tx = session.beginTransaction();
             Administrateur admin = new Administrateur();
             admin.setNom(nom);

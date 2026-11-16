@@ -78,6 +78,15 @@
                         <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation">New Assignment</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#notificationsSubmenu" aria-expanded="false">
+                        <i class="bi bi-bell"></i><span>Notifications</span>
+                    </a>
+                    <ul id="notificationsSubmenu" class="submenu collapse list-unstyled">
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/ListeNotificationsServlet">All Notifications</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/NotifierEnseignantServlet">Send Notification</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="menu-section">
@@ -163,6 +172,9 @@
                             </a>
                             <a href="${pageContext.request.contextPath}/admin/cours?action=ajouter" class="btn btn-success btn-lg">
                                 <i class="bi bi-book me-2"></i>Create New Course
+                            </a>
+                            <a href="${pageContext.request.contextPath}/NotifyTeacherServlet" class="btn btn-warning btn-lg text-white">
+                                <i class="bi bi-bell me-2"></i>Notify a Teacher
                             </a>
                         </div>
                     </div>

@@ -75,6 +75,16 @@
                         <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation">New Assignment</a></li>
                     </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#notificationsSubmenu" aria-expanded="false">
+                        <i class="bi bi-bell"></i><span>Notifications</span>
+                    </a>
+                    <ul id="notificationsSubmenu" class="submenu collapse list-unstyled">
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/ListeNotificationsServlet">All Notifications</a></li>
+                        <li><a class="nav-link" href="${pageContext.request.contextPath}/NotifierEnseignantServlet">Send Notification</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="menu-section">

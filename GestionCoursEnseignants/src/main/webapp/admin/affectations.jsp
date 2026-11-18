@@ -21,80 +21,89 @@
         .dashboard-content{padding:24px}
         .table-responsive { overflow: visible !important; }
     </style>
+    <script>
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="search-backdrop" id="searchBackdrop"></div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- Sidebar -->
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <div class="sidebar-brand">
-            <h5><i class="bi bi-mortarboard-fill"></i> Kiaalap</h5>
-            <button type="button" class="sidebar-close" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <h5><i class="bi bi-mortarboard-fill"></i> Kiaalap</h5>
+                <button type="button" class="sidebar-close" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
+            </div>
         </div>
-    </div>
-    <nav class="sidebar-nav">
-        <div class="menu-section">
-            <div class="menu-section-title">Main</div>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/dashboard">
-                        <i class="bi bi-speedometer2"></i><span>Dashboard</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <div class="menu-section-title">Academic</div>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#professorsSubmenu" aria-expanded="false">
-                        <i class="bi bi-person-badge"></i><span>Teachers</span>
-                    </a>
-                    <ul id="professorsSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/listeEnseignants">All Teachers</a></li>
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/ajouterEnseignant.jsp">Add Teacher</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#coursesSubmenu" aria-expanded="false">
-                        <i class="bi bi-book"></i><span>Courses</span>
-                    </a>
-                    <ul id="coursesSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours">All Courses</a></li>
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours?action=ajouter">Add Course</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link has-submenu active" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#assignmentsSubmenu" aria-expanded="true">
-                        <i class="bi bi-link-45deg"></i><span>Assignments</span>
-                    </a>
-                    <ul id="assignmentsSubmenu" class="submenu collapse show list-unstyled">
-                        <li><a class="nav-link active" href="${pageContext.request.contextPath}/affectations">All Assignments</a></li>
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation">New Assignment</a></li>
-                    </ul>
-                </li>
+        <nav class="sidebar-nav">
+            <div class="menu-section">
+                <div class="menu-section-title">Main</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="${pageContext.request.contextPath}/admin/dashboard">
+                            <i class="bi bi-speedometer2"></i><span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <div class="menu-section-title">Academic</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#professorsSubmenu" aria-expanded="false">
+                            <i class="bi bi-person-badge"></i><span>Teachers</span>
+                        </a>
+                        <ul id="professorsSubmenu" class="submenu collapse list-unstyled">
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/listeEnseignants">All Teachers</a></li>
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/ajouterEnseignant.jsp">Add Teacher</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#coursesSubmenu" aria-expanded="false">
+                            <i class="bi bi-book"></i><span>Courses</span>
+                        </a>
+                        <ul id="coursesSubmenu" class="submenu collapse list-unstyled">
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours">All Courses</a></li>
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/admin/cours?action=ajouter">Add Course</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#assignmentsSubmenu" aria-expanded="false">
+                            <i class="bi bi-link-45deg"></i><span>Assignments</span>
+                        </a>
+                        <ul id="assignmentsSubmenu" class="submenu collapse list-unstyled">
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/affectations">All Assignments</a></li>
+                            <!-- Lien vers le Servlet pour charger les listes -->
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation">New Assignment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#notificationsSubmenu" aria-expanded="false">
+                            <i class="bi bi-bell"></i><span>Notifications</span>
+                        </a>
+                        <ul id="notificationsSubmenu" class="submenu collapse list-unstyled">
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/ListeNotificationsServlet">All Notifications</a></li>
+                            <li><a class="nav-link" href="${pageContext.request.contextPath}/NotifierEnseignantServlet">Send Notification</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <div class="menu-section-title">Pages</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
 
-                <li class="nav-item">
-                    <a class="nav-link has-submenu" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#notificationsSubmenu" aria-expanded="false">
-                        <i class="bi bi-bell"></i><span>Notifications</span>
-                    </a>
-                    <ul id="notificationsSubmenu" class="submenu collapse list-unstyled">
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/ListeNotificationsServlet">All Notifications</a></li>
-                        <li><a class="nav-link" href="${pageContext.request.contextPath}/NotifierEnseignantServlet">Send Notification</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <div class="menu-section-title">Pages</div>
-            <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
-            </ul>
-        </div>
-    </nav>
-</aside>
 
 <!-- Main Content Wrapper -->
 <div class="main-wrapper" id="mainWrapper">

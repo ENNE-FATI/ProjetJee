@@ -11,25 +11,27 @@ import java.io.IOException;
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // 1. Récupérer la session existante
         HttpSession session = request.getSession(false);
 
-        // 2. Si la session existe, on détruit TOUS ses attributs
         if (session != null) {
+            // On supprime explicitement les deux types de connexion (Enseignant et Admin)
+            session.removeAttribute("user");
             session.removeAttribute("adminConnecte");
-            session.removeAttribute("enseignantConnecte");
-            session.invalidate(); // Détruit complètement la session
+
+            // On détruit la session (ce qui supprime tout le reste)
+            session.invalidate();
         }
 
-        // 3. On force le navigateur à ne rien mettre en cache
-        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-        response.setHeader("Pragma", "no-cache");
-        response.setDateHeader("Expires", 0);
+        // --- LE BOUCLIER ANTI-CACHE (INDISPENSABLE POUR ADMIN ET ENSEIGNANT) ---
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+        response.setDateHeader("Expires", 0); // Proxies
 
-        // 4. Redirection vers la page de login
+        // Redirection vers la page de login
         response.sendRedirect(request.getContextPath() + "/public/login.jsp");
     }
 }

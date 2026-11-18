@@ -64,8 +64,11 @@ public class LoginServlet extends HttpServlet {
 
             if (enseignant != null) {
                 HttpSession httpSession = request.getSession();
-                httpSession.setAttribute("enseignantConnecte", enseignant);
-                response.sendRedirect(request.getContextPath() + "/enseignant/index.jsp");
+                // CORRECTION 1 : On utilise la clé "user" pour correspondre au DashboardServlet
+                httpSession.setAttribute("user", enseignant);
+
+                // CORRECTION 2 : On redirige vers le SERVLET, pas la JSP !
+                response.sendRedirect(request.getContextPath() + "/enseignant/dashboard");
             } else {
                 request.setAttribute("erreur", "Email ou mot de passe incorrect.");
                 request.getRequestDispatcher("/public/login.jsp").forward(request, response);

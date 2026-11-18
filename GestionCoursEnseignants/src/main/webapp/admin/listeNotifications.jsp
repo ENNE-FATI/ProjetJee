@@ -18,6 +18,13 @@
         .top-navbar{background:#fff;height:60px;padding:0 1rem;box-shadow:0 1px 3px #0000001a}
         .dashboard-content{padding:24px}
     </style>
+    <script>
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        });
+    </script>
 </head>
 <body>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>

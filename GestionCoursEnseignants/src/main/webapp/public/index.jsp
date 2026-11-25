@@ -1,18 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>Educenter - Accueil</title>
+  <title>ENSA - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/public/images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="${pageContext.request.contextPath}/public/images/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
-  <!-- CSS (Chemins corrigés vers /public/) -->
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3309/3309804.png" type="image/x-icon">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3309/3309804.png" type="image/x-icon">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/public/plugins/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/public/plugins/slick/slick.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/public/plugins/themify-icons/themify-icons.css">
@@ -22,46 +25,97 @@
   <link href="${pageContext.request.contextPath}/public/css/style.css" rel="stylesheet">
 
   <style>
-    .header { position: fixed !important; top: 0; width: 100%; z-index: 9999; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    /* --- HEADER (Correction du fond blanc) --- */
+    .header { 
+        position: fixed !important; 
+        top: 0; 
+        width: 100%; 
+        z-index: 9999; 
+        background-color: #fff !important; /* Force le blanc */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+    }
     body { padding-top: 80px; }
+    
+    /* --- ENSA LOGO --- */
+    .navbar-brand { 
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800; 
+        font-size: 2.5rem;
+        color: #ffbc3b !important; 
+        text-transform: uppercase; 
+        letter-spacing: 2px;
+    }
+
+    /* --- HERO SECTION (Image en HTML) --- */
+    .hero-section {
+        position: relative;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        background-color: #222; /* Couleur de fond si l'image bug */
+    }
+    
+    /* Image d'arrière-plan forcée */
+    .hero-img {
+        position: absolute;
+        top: 0; left: 0; 
+        width: 100%; height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+    
+    /* Voile sombre pour lire le texte */
+    .hero-overlay {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 2;
+    }
+    
+    /* Contenu au-dessus de l'image */
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        color: white;
+        padding: 50px 0;
+    }
+
+    /* --- BOUTONS --- */
     .btn-login { color: #333 !important; font-weight: 700; text-transform: uppercase; padding: 8px 15px !important; margin-left: 10px; transition: all 0.3s ease; }
     .btn-login:hover { color: #ffbc3b !important; background-color: transparent !important; text-decoration: underline; }
 
-    /* Correction pour les images de fond */
-    .bg-cover { background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; }
-
-    /* CORRECTION POUR LES IMAGES DES CARTES : Evite l'étirement moche */
-    .card-img-top {
-      height: 220px; /* Force une hauteur uniforme */
-      object-fit: cover; /* Coupe l'image proprement pour remplir le cadre sans la déformer */
-    }
-    .about-img {
-      height: 350px;
-      object-fit: cover;
-      width: 100%;
-    }
+    /* --- FOOTER --- */
+    footer { background-color: #f8f9fa; border-top: 1px solid #e9ecef; color: #333; padding-top: 50px; margin-top: 50px; }
+    .footer-container { max-width: 960px; margin: 0 auto; }
+    .footer h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; color: #ffbc3b; margin-bottom: 15px; }
+    .footer h5 { color: #222; font-weight: 700; }
+    .footer p, .footer a { color: #666; font-size: 0.9rem; text-decoration: none; }
+    .footer a:hover { color: #ffbc3b; }
+    .copyright { background-color: #fff; border-top: 1px solid #e9ecef; padding: 20px 0; margin-top: 40px; }
+    
+    /* Images des cartes */
+    .card-img-top { height: 220px; object-fit: cover; }
   </style>
 </head>
 
 <body>
+
 <!-- ================= HEADER ================= -->
 <header class="header">
   <div class="navigation w-100">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light p-0">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/public/index.jsp">
-          <img src="${pageContext.request.contextPath}/public/images/logo.png" alt="logo" style="max-height: 50px;">
-        </a>
+        <a class="navbar-brand" href="#">ENSA</a>
         <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav ml-auto text-center align-items-center">
-            <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/public/index.jsp">Accueil</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/about.jsp">À propos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#courses-section">Cours</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/about.jsp">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#courses-section">Courses</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/contact.jsp">Contact</a></li>
-            <li class="nav-item"><a class="btn-login" href="${pageContext.request.contextPath}/public/login.jsp">Login</a></li>
+            <li class="nav-item"><a class="btn-login" href="#">Login</a></li>
           </ul>
         </div>
       </nav>
@@ -69,110 +123,88 @@
   </div>
 </header>
 
-<!-- ================= SLIDER ================= -->
-<section class="hero-section overlay bg-cover" style="background-image: url('${pageContext.request.contextPath}/public/images/banner/banner-1.jpg');">
-  <div class="container">
-    <div class="hero-slider">
-      <div class="hero-slider-item">
-        <div class="row">
-          <div class="col-md-8">
-            <h1 class="text-white" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">Votre avenir radieux est notre mission</h1>
-            <p class="text-white mb-4" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="${pageContext.request.contextPath}/public/contact.jsp" class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">S'inscrire</a>
-          </div>
-        </div>
+<!-- ================= HERO SECTION ================= -->
+<section class="hero-section">
+  <!-- 1. L'image est chargée en HTML directement -->
+  <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Campus ENSA" class="hero-img">
+  
+  <!-- 2. Le voile sombre -->
+  <div class="hero-overlay"></div>
+  
+  <!-- 3. Le texte -->
+  <div class="container hero-content">
+    <div class="row">
+      <div class="col-md-8">
+        <h1 class="text-white mb-4" style="font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Your Bright Future is Our Mission</h1>
+        <p class="text-white lead mb-5" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Join ENSA to acquire the necessary skills and excel in the world of engineering.</p>
+        <a href="${pageContext.request.contextPath}/public/contact.jsp" class="btn btn-primary btn-lg">Apply Now</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= BANNER FEATURE ================= -->
-<section class="section-sm pb-0">
+<!-- ================= FEATURES ================= -->
+<section class="section-sm py-5">
   <div class="container">
     <div class="row">
       <div class="col-md-4 mb-4">
-        <div class="card border-0 text-center">
-          <div class="card-body">
-            <i class="ti-book text-primary h1"></i>
-            <h5 class="mt-3">Cours de qualité</h5>
-          </div>
+        <div class="card border-0 text-center shadow-sm p-4">
+          <i class="ti-book text-primary" style="font-size: 3rem;"></i>
+          <h5 class="mt-3">Quality Courses</h5>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card border-0 text-center">
-          <div class="card-body">
-            <i class="ti-medall text-primary h1"></i>
-            <h5 class="mt-3">Professeurs experts</h5>
-          </div>
+        <div class="card border-0 text-center shadow-sm p-4">
+          <i class="ti-medall text-primary" style="font-size: 3rem;"></i>
+          <h5 class="mt-3">Expert Teachers</h5>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card border-0 text-center">
-          <div class="card-body">
-            <i class="ti-desktop text-primary h1"></i>
-            <h5 class="mt-3">Apprentissage en ligne</h5>
-          </div>
+        <div class="card border-0 text-center shadow-sm p-4">
+          <i class="ti-desktop text-primary" style="font-size: 3rem;"></i>
+          <h5 class="mt-3">Online Learning</h5>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ABOUT ================= -->
-<section class="section" id="about-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 order-2 order-md-1">
-        <h2 class="section-title">À propos de Educenter</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <a href="${pageContext.request.contextPath}/public/about.jsp" class="btn btn-primary-outline">En savoir plus</a>
-      </div>
-      <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
-        <img class="about-img" src="${pageContext.request.contextPath}/public/images/about/about-us.jpg" alt="about image">
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= COURSES ================= -->
-<section class="section-sm" id="courses-section">
+<section class="section" id="courses-section">
   <div class="container">
-    <div class="row">
+    <div class="row mb-5">
       <div class="col-12">
-        <div class="d-flex align-items-center section-title justify-content-between">
-          <h2 class="mb-0 text-nowrap mr-3">Nos Cours</h2>
-          <div class="border-top w-100 border-primary d-none d-sm-block"></div>
-        </div>
+        <h2 class="section-title">Our Courses</h2>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="${pageContext.request.contextPath}/public/images/courses/course-1.jpg" alt="course thumb">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Photography">
           <div class="card-body">
-            <a href="#"><h4 class="card-title">Photographie</h4></a>
-            <p class="card-text mb-4">Lorem ipsum dolor sit amet.</p>
-            <a href="#" class="btn btn-primary btn-sm">S'inscrire</a>
+            <h4 class="card-title">Photography</h4>
+            <p class="card-text text-muted">Master the art of visual storytelling.</p>
+            <a href="#" class="btn btn-primary btn-sm">Enroll</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="${pageContext.request.contextPath}/public/images/courses/course-2.jpg" alt="course thumb">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Programming">
           <div class="card-body">
-            <a href="#"><h4 class="card-title">Programmation</h4></a>
-            <p class="card-text mb-4">Lorem ipsum dolor sit amet.</p>
-            <a href="#" class="btn btn-primary btn-sm">S'inscrire</a>
+            <h4 class="card-title">Programming</h4>
+            <p class="card-text text-muted">Learn to build software and applications.</p>
+            <a href="#" class="btn btn-primary btn-sm">Enroll</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 mb-5">
-        <div class="card p-0 border-primary rounded-0 hover-shadow">
-          <img class="card-img-top rounded-0" src="${pageContext.request.contextPath}/public/images/courses/course-3.jpg" alt="course thumb">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <img class="card-img-top" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Graphic Design">
           <div class="card-body">
-            <a href="#"><h4 class="card-title">Design Graphique</h4></a>
-            <p class="card-text mb-4">Lorem ipsum dolor sit amet.</p>
-            <a href="#" class="btn btn-primary btn-sm">S'inscrire</a>
+            <h4 class="card-title">Graphic Design</h4>
+            <p class="card-text text-muted">Create stunning visuals and interfaces.</p>
+            <a href="#" class="btn btn-primary btn-sm">Enroll</a>
           </div>
         </div>
       </div>
@@ -181,139 +213,39 @@
 </section>
 
 <!-- ================= CTA ================= -->
-<section class="section bg-primary">
+<section class="section bg-primary text-center text-white py-5">
   <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="text-white mb-4">Prêt à commencer votre voyage éducatif ?</h2>
-        <a href="${pageContext.request.contextPath}/public/contact.jsp" class="btn btn-light btn-lg">Contactez-nous</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SUCCESS STORY ================= -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto text-center">
-        <h2 class="section-title">Histoires de réussite</h2>
-        <p class="lead">"Grâce à Educenter, j'ai pu acquérir les compétences nécessaires pour décrocher le job de mes rêves."</p>
-        <h5 class="mt-4">- John Doe, Ancien Élève</h5>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= EVENTS ================= -->
-<section class="section bg-gray">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="d-flex align-items-center section-title justify-content-between">
-          <h2 class="mb-0 text-nowrap mr-3">Événements à venir</h2>
-          <div class="border-top w-100 border-primary d-none d-sm-block"></div>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-5 col-md-6 mb-4">
-        <div class="card border-0 shadow-sm p-4 bg-white">
-          <h5 class="card-title">Conférence Tech 2024</h5>
-          <p class="text-muted small mb-2"><i class="ti-calendar mr-2"></i> 15 Octobre 2024</p>
-          <p class="card-text">Rejoignez-nous pour une journée de conférences sur les dernières technologies.</p>
-        </div>
-      </div>
-      <div class="col-lg-5 col-md-6 mb-4">
-        <div class="card border-0 shadow-sm p-4 bg-white">
-          <h5 class="card-title">Atelier de Design</h5>
-          <p class="text-muted small mb-2"><i class="ti-calendar mr-2"></i> 22 Octobre 2024</p>
-          <p class="card-text">Apprenez les bases du design UX/UI avec des professionnels du secteur.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= TEACHERS ================= -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center mb-5">
-        <h2 class="section-title">Nos Professeurs</h2>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-3 col-sm-6 mb-4">
-        <div class="card border-0 text-center">
-          <img src="${pageContext.request.contextPath}/public/images/teachers/teacher-1.jpg" alt="teacher" class="card-img-top rounded-circle w-75 mx-auto mt-3" style="height: 200px; object-fit: cover;">
-          <div class="card-body">
-            <h5 class="card-title">Jane Doe</h5>
-            <p class="text-muted small">Professeure de Mathématiques</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6 mb-4">
-        <div class="card border-0 text-center">
-          <img src="${pageContext.request.contextPath}/public/images/teachers/teacher-2.jpg" alt="teacher" class="card-img-top rounded-circle w-75 mx-auto mt-3" style="height: 200px; object-fit: cover;">
-          <div class="card-body">
-            <h5 class="card-title">John Smith</h5>
-            <p class="text-muted small">Professeur d'Informatique</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= BLOG ================= -->
-<section class="section pt-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="section-title">Dernières Nouvelles</h2>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="card border-0 shadow-sm">
-          <img src="${pageContext.request.contextPath}/public/images/blog/blog-1.jpg" class="card-img-top" alt="blog">
-          <div class="card-body">
-            <h5 class="card-title">Comment réussir ses examens ?</h5>
-            <p class="card-text text-muted small">Conseils et astuces pour optimiser vos révisions.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="card border-0 shadow-sm">
-          <img src="${pageContext.request.contextPath}/public/images/blog/blog-2.jpg" class="card-img-top" alt="blog">
-          <div class="card-body">
-            <h5 class="card-title">Les métiers de demain</h5>
-            <p class="card-text text-muted small">Découvrez les secteurs qui recrutent le plus.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2 class="mb-4 text-white">Ready to Start Your Educational Journey?</h2>
+    <a href="${pageContext.request.contextPath}/public/contact.jsp" class="btn btn-light btn-lg">Contact Us</a>
   </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer>
-  <div class="footer bg-footer section border-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-sm-8 mb-5 mb-lg-0">
-          <a class="logo-footer" href="${pageContext.request.contextPath}/public/index.jsp">
-            <img class="img-fluid mb-4" src="${pageContext.request.contextPath}/public/images/logo.png" alt="logo" style="max-height: 50px;">
-          </a>
-          <p class="text-white-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  <div class="footer-container container">
+    <div class="row text-center text-md-left">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h2>ENSA</h2>
+          <p>Empowering students to achieve their dreams through quality education and innovation.</p>
         </div>
-      </div>
+        <div class="col-md-3 mb-4 mb-md-0">
+            <h5 class="mb-3">Quick Links</h5>
+            <ul class="list-unstyled">
+                <li><a href="#">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/public/about.jsp">About Us</a></li>
+                <li><a href="#courses-section">Courses</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h5 class="mb-3">Contact</h5>
+            <p class="mb-1">contact@ensa.edu</p>
+            <p>+1 234 567 890</p>
+        </div>
     </div>
   </div>
-  <div class="copyright py-4 bg-dark text-center">
+  <div class="copyright text-center">
     <div class="container">
-      <p class="mb-0 text-white-50">© 2024 Educenter. Tous droits réservés.</p>
+      <p class="mb-0 text-muted">© 2024 ENSA. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
@@ -325,11 +257,5 @@
 <script src="${pageContext.request.contextPath}/public/plugins/aos/aos.js"></script>
 <script src="${pageContext.request.contextPath}/public/plugins/venobox/venobox.min.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/script.js"></script>
-
-<script>
-  if(typeof AOS !== 'undefined') {
-    AOS.init();
-  }
-</script>
 </body>
 </html>

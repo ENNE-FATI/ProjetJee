@@ -1,0 +1,176 @@
+
+/* ===== ENSA AGADIR - PUBLIC THEME ===== */
+
+:root {
+    --ensa-blue: #173f70;
+    --ensa-dark: #102d50;
+    --ensa-gold: #d3a64a;
+    --ensa-light: #f5f7fa;
+}
+
+/* General */
+body {
+    overflow-x: hidden;
+}
+
+body.public-page {
+    padding-top: 85px !important;
+    background: var(--ensa-light);
+}
+
+/* Header existant */
+.public-page .header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: white !important;
+    border-bottom: 3px solid var(--ensa-gold);
+    box-shadow: 0 3px 15px rgba(0,0,0,.10);
+}
+
+.public-page .header .navbar {
+    min-height: 85px;
+}
+
+.public-page .header .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.public-page .header .navbar-brand img {
+    max-height: 68px !important;
+    width: 68px;
+    object-fit: contain;
+}
+
+.public-page .header .nav-link {
+    color: var(--ensa-blue) !important;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.public-page .header .nav-link:hover {
+    color: var(--ensa-gold) !important;
+}
+
+.public-page .btn-login {
+    background: var(--ensa-blue);
+    color: white !important;
+    border-radius: 6px;
+    padding: 10px 20px !important;
+    text-decoration: none;
+}
+
+.public-page .btn-login:hover {
+    background: var(--ensa-gold) !important;
+    color: var(--ensa-dark) !important;
+    text-decoration: none !important;
+}
+
+/* Titles */
+.public-page .section-title,
+.public-page h2 {
+    color: var(--ensa-blue);
+}
+
+/* Buttons */
+.public-page .btn-primary {
+    background: var(--ensa-blue) !important;
+    border-color: var(--ensa-blue) !important;
+    color: white !important;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.public-page .btn-primary:hover {
+    background: var(--ensa-gold) !important;
+    border-color: var(--ensa-gold) !important;
+    color: var(--ensa-dark) !important;
+}
+
+/* Cards */
+.public-page .card,
+.public-page .login-card,
+.public-page .register-card {
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+/* Forms */
+.public-page .form-control {
+    border-radius: 6px;
+    min-height: 44px;
+    border: 1px solid #dce3eb;
+}
+
+.public-page .form-control:focus {
+    border-color: var(--ensa-blue);
+    box-shadow: 0 0 0 3px rgba(23,63,112,.10);
+}
+
+/* Footer existant */
+.public-page footer {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    overflow: hidden;
+}
+
+.public-page footer .footer {
+    background: var(--ensa-dark) !important;
+    padding: 35px 0 !important;
+}
+
+.public-page footer h4,
+.public-page footer h5 {
+    color: var(--ensa-gold);
+}
+
+.public-page footer p,
+.public-page footer a {
+    color: #dce5ef;
+}
+
+.public-page footer a:hover {
+    color: var(--ensa-gold);
+}
+
+/* Images */
+.public-page .card-img-top {
+    object-fit: cover;
+}
+
+.public-page .about-img,
+.public-page .about-img-page {
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .public-page .header .navbar {
+        padding: 10px 0;
+    }
+
+    .public-page .header .navbar-collapse {
+        background: white;
+        padding: 15px;
+    }
+
+    .public-page .header .nav-link {
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    body.public-page {
+        padding-top: 75px !important;
+    }
+
+    .public-page .header .navbar-brand img {
+        width: 55px;
+        max-height: 55px !important;
+    }
+}

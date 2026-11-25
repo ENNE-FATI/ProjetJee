@@ -81,7 +81,6 @@
                     </a>
                     <ul id="assignmentsSubmenu" class="submenu collapse list-unstyled">
                         <li><a class="nav-link" href="${pageContext.request.contextPath}/affectations">All Assignments</a></li>
-                        <!-- Lien vers le Servlet pour charger les listes -->
                         <li><a class="nav-link" href="${pageContext.request.contextPath}/ajouterAffectation">New Assignment</a></li>
                     </ul>
                 </li>
@@ -91,6 +90,7 @@
                     </a>
                     <ul id="notificationsSubmenu" class="submenu collapse list-unstyled">
                         <li><a class="nav-link" href="${pageContext.request.contextPath}/ListeNotificationsServlet">All Notifications</a></li>
+                        <!-- Lien corrigé ici aussi -->
                         <li><a class="nav-link" href="${pageContext.request.contextPath}/NotifierEnseignantServlet">Send Notification</a></li>
                     </ul>
                 </li>
@@ -180,7 +180,8 @@
                             <a href="${pageContext.request.contextPath}/admin/cours?action=ajouter" class="btn btn-success btn-lg">
                                 <i class="bi bi-book me-2"></i>Create New Course
                             </a>
-                            <a href="${pageContext.request.contextPath}/NotifyTeacherServlet" class="btn btn-warning btn-lg text-white">
+                            <!-- CORRECTION ICI : Le lien pointe maintenant vers le bon Servlet -->
+                            <a href="${pageContext.request.contextPath}/NotifierEnseignantServlet" class="btn btn-warning btn-lg text-white">
                                 <i class="bi bi-bell me-2"></i>Notify a Teacher
                             </a>
                         </div>

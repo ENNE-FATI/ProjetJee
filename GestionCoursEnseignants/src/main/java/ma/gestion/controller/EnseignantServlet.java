@@ -81,18 +81,19 @@ public class EnseignantServlet extends HttpServlet {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             // --- COURS ---
-            String hqlCours = "SELECT a.cours.id, a.cours.code, a.cours.intitule " +
-                    "FROM Affectation a " +
-                    "WHERE a.enseignant.id = :idEns " +
-                    "ORDER BY a.cours.code";
+        	String sqlCours = "SELECT c.id, c.code, c.intitule " +
+                    "FROM affectations a " +
+                    "JOIN cours c ON a.cours_id = c.id " +
+                    "WHERE a.enseignant_id = :idEns";
+  
+  Query<Object[]> qCours = session.createNativeQuery(sqlCours, Object[].class);
+  qCours.setParameter("idEns", idEnseignant);
+  List<Object[]> mesCours = qCours.list();
+  
+  System.out.println("DEBUG: Nombre de cours trouvés = " + mesCours.size());
 
-            Query<Object[]> qCours = session.createQuery(hqlCours, Object[].class);
-            qCours.setParameter("idEns", idEnseignant);
-            List<Object[]> mesCours = qCours.list();
-
-            request.setAttribute("nbCours", mesCours.size());
-            request.setAttribute("mesCours", mesCours);
-
+  request.setAttribute("nbCours", mesCours.size());
+  request.setAttribute("mesCours", mesCours);
             // --- NOTIFICATIONS ---
             List<Notification> notifications = notificationDAO.getNotificationsByUtilisateur(idEnseignant);
 
@@ -107,8 +108,11 @@ public class EnseignantServlet extends HttpServlet {
             request.setAttribute("nbNotifications", nbNonLues);
 
             // --- ZOOM ---
-            String sqlZoom = "SELECT s.id, s.date_heure, s.lien_zoom, c.intitule FROM seance_zoom s JOIN cours c ON s.cours_id = c.id WHERE c.enseignant_id = :idEns AND s.date_heure > NOW() ORDER BY s.date_heure ASC LIMIT 5";
-            Query<Object[]> qZoom = session.createNativeQuery(sqlZoom, Object[].class);
+            String sqlZoom = "SELECT s.id, s.dateHeure, s.lienZoom, s.duree, c.intitule " +
+                    "FROM seances_zoom s " +
+                    "JOIN cours c ON s.cours_id = c.id " +
+                    "WHERE s.enseignant_id = :idEns AND s.dateHeure > NOW() " +
+                    "ORDER BY s.dateHeure ASC LIMIT 5";            Query<Object[]> qZoom = session.createNativeQuery(sqlZoom, Object[].class);
             qZoom.setParameter("idEns", idEnseignant);
             List<Object[]> prochainesSeances = qZoom.list();
             request.setAttribute("prochainesSeances", prochainesSeances);

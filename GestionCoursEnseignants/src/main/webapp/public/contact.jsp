@@ -11,7 +11,7 @@
     <!-- Google Fonts for ENSA logo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3309/3309804.png" type="image/x-icon">
@@ -35,23 +35,32 @@
             --ensa-border: #e9ecef;
         }
 
-        /* --- HEADER --- */
-        .header { position: fixed !important; top: 0; width: 100%; z-index: 9999; background-color: #fff !important; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         body { padding-top: 80px; }
+        .header, footer { font-family: 'Montserrat', sans-serif; color: #333; }
 
-        /* --- ENSA LOGO --- */
-        .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 2.5rem;
-            color: var(--ensa-yellow) !important;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* --- HEADER (identique à index) --- */
+        .header {
+            position: fixed !important; top: 0; width: 100%; z-index: 9999;
+            background-color: #fff !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,.08);
         }
-
-        /* --- BUTTONS --- */
-        .btn-login { color: #333 !important; font-weight: 700; text-transform: uppercase; padding: 8px 15px !important; margin-left: 10px; transition: all 0.3s ease; }
-        .btn-login:hover { color: var(--ensa-yellow) !important; background-color: transparent !important; text-decoration: underline; }
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 2.2rem;
+            color: #ffbc3b !important; text-transform: uppercase; letter-spacing: 2px;
+        }
+        .navbar .nav-link { font-weight: 600; color: #333 !important; position: relative; }
+        .navbar .nav-link::after {
+            content: ""; position: absolute; left: 50%; bottom: 2px; width: 0; height: 2px;
+            background: #ffbc3b; transition: .25s; transform: translateX(-50%);
+        }
+        .navbar .nav-link:hover::after, .navbar .nav-item.active .nav-link::after { width: 60%; }
+        .navbar .nav-link:hover { color: #e0a330 !important; }
+        .btn-login {
+            background: #ffbc3b; color: #222 !important; font-weight: 700; text-transform: uppercase;
+            padding: 9px 22px !important; margin-left: 14px; border-radius: 30px; transition: .25s;
+            display: inline-block;
+        }
+        .btn-login:hover { background: #e0a330; text-decoration: none; transform: translateY(-2px); }
 
         /* --- PAGE TITLE --- */
         .page-title-section {
@@ -205,19 +214,15 @@
         .form-alert.success { background: #e8f6ee; color: #176b40; border: 1px solid #b9e2c9; }
         .form-alert.error { background: #fdecec; color: #c62828; border: 1px solid #f5c2c2; }
 
-        /* --- FOOTER (Light) --- */
-        footer {
-            background-color: var(--ensa-light);
-            border-top: 1px solid var(--ensa-border);
-            color: #333;
-            padding-top: 50px;
-        }
-        .footer-container { max-width: 960px; margin: 0 auto; }
-        footer h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--ensa-yellow); margin-bottom: 15px; }
-        footer h5 { color: #222; font-weight: 700; }
-        footer p, footer a { color: #666; font-size: 0.9rem; text-decoration: none; }
-        footer a:hover { color: var(--ensa-yellow); }
-        .copyright { background-color: #fff; border-top: 1px solid var(--ensa-border); padding: 20px 0; margin-top: 40px; }
+        /* --- FOOTER (identique à index) --- */
+        footer { background: #fff; border-top: 1px solid #e9ecef; padding-top: 60px; }
+        .footer-container { max-width: 1000px; margin: 0 auto; }
+        footer h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; color: #ffbc3b; margin-bottom: 15px; }
+        footer h5 { font-family: 'Montserrat', sans-serif; color: #222; font-weight: 700; }
+        footer p, footer a { color: #666; font-size: .9rem; text-decoration: none; }
+        footer a:hover { color: #e0a330; }
+        footer li { margin-bottom: 8px; }
+        .copyright { background: #f8f9fa; border-top: 1px solid #e9ecef; padding: 20px 0; margin-top: 40px; }
 
         @media (max-width: 767px) {
             .contact-form { padding: 26px 20px; }
@@ -241,6 +246,7 @@
                     <ul class="navbar-nav ml-auto text-center align-items-center">
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/index.jsp">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/about.jsp">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/index.jsp#ensa-agadir">ENSA Agadir</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/public/index.jsp#courses-section">Courses</a></li>
                         <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/public/contact.jsp">Contact</a></li>
                         <li class="nav-item"><a class="btn-login" href="${pageContext.request.contextPath}/public/login.jsp">Login</a></li>
@@ -357,7 +363,7 @@
 <footer>
     <div class="footer-container container">
         <div class="row text-center text-md-left">
-            <div class="col-md-6 mb-4 mb-md-0">
+            <div class="col-md-5 mb-4 mb-md-0">
                 <h2>ENSA</h2>
                 <p>Empowering students to achieve their dreams through quality education and innovation.</p>
             </div>
@@ -366,17 +372,18 @@
                 <ul class="list-unstyled">
                     <li><a href="${pageContext.request.contextPath}/public/index.jsp">Home</a></li>
                     <li><a href="${pageContext.request.contextPath}/public/about.jsp">About Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/public/index.jsp#ensa-agadir">ENSA Agadir</a></li>
                     <li><a href="${pageContext.request.contextPath}/public/index.jsp#courses-section">Courses</a></li>
                 </ul>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h5 class="mb-3">Contact</h5>
+                <p class="mb-1">Avenue Tamsoult, B.P. 1136, Agadir, Morocco</p>
                 <p class="mb-1">contact@ensa.edu</p>
-                <p>+212 5 22 00 00 00</p>
+                <p>+1 234 567 890</p>
             </div>
         </div>
     </div>
-
     <div class="copyright text-center">
         <div class="container">
             <p class="mb-0 text-muted">© 2024 ENSA. All Rights Reserved.</p>

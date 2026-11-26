@@ -16,7 +16,7 @@
     <title>Dashboard — ENSA</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/enseignant/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/enseignant/css/style.css?v=20261103.1">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,23 +38,23 @@
         h1, h2, h3, h4, h5, h6 { color: var(--ensa-dark) !important; }
 
         /* --- STAT CARDS --- */
-        .stat-card { 
-            background: #fff !important; 
-            border: 1px solid #e9ecef !important; 
-            border-radius: 16px; 
-            padding: 1.5rem; 
-            transition: all 0.3s ease; 
+        .stat-card {
+            background: #fff !important;
+            border: 1px solid #e9ecef !important;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
         }
-        .stat-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             border-color: var(--ensa-yellow) !important;
         }
-        .stat-icon { 
-            width: 56px; height: 56px; 
-            border-radius: 12px; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 1.5rem; 
+        .stat-icon {
+            width: 56px; height: 56px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
         }
         .stat-icon.yellow { background: rgba(255, 188, 59, 0.15); color: var(--ensa-yellow); }
         .stat-icon.red { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
@@ -82,10 +82,10 @@
         }
 
         /* --- THEME TOGGLE --- */
-        .theme-toggle-btn { 
-            background: #fff; border: 1px solid #e9ecef; color: #333; 
-            border-radius: 8px; width: 40px; height: 40px; 
-            display: flex; align-items: center; justify-content: center; 
+        .theme-toggle-btn {
+            background: #fff; border: 1px solid #e9ecef; color: #333;
+            border-radius: 8px; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: 0.2s;
         }
         .theme-toggle-btn:hover { background: #f8f9fa; border-color: var(--ensa-yellow); }
@@ -119,9 +119,8 @@
             <ul class="side-list">
                 <li><a class="side-link active" href="${pageContext.request.contextPath}/enseignant/dashboard"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span class="side-label ms-2">Dashboard</span></a></li>
                 <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/classes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="side-label ms-2">My Courses</span></a></li>
-                <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/gradebook.jsp"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 9v12"/></svg><span class="side-label ms-2">Gradebook</span></a></li>
-                <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/assignments.jsp"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg><span class="side-label ms-2">Assignments</span></a></li>
-                
+                <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/ressources.jsp"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 9v12"/></svg><span class="side-label ms-2">My Ressources</span></a></li>
+
                 <!-- BOUTON AJOUTÉ ICI POUR LANCER ZOOM -->
                 <li>
                     <a class="side-link" href="#" data-bs-toggle="modal" data-bs-target="#addZoomModal">
@@ -239,11 +238,11 @@
                             <div class="table-responsive">
                                 <table class="table table-hover align-middle">
                                     <thead class="table-light text-muted small text-uppercase">
-                                        <tr>
-                                            <th class="border-0 rounded-start">Code</th>
-                                            <th class="border-0">Course Name</th>
-                                            <th class="border-0 rounded-end text-end">Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="border-0 rounded-start">Code</th>
+                                        <th class="border-0">Course Name</th>
+                                        <th class="border-0 rounded-end text-end">Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach var="c" items="${mesCours}">
@@ -295,7 +294,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <!-- Zoom Sessions -->
                     <div class="card border-0 shadow-sm rounded-4 bg-white">
                         <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
@@ -324,7 +323,7 @@
                 </div>
             </div>
         </main>
-        
+
         <footer class="app-footer text-center py-4 text-muted small">
             <p class="mb-0">© 2024 ENSA · Teacher Portal</p>
         </footer>
@@ -374,7 +373,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.setAttribute('data-bs-theme', 'light');
-        
+
         const btn = document.getElementById('theme-toggle');
         const sun = document.getElementById('icon-sun');
         const moon = document.getElementById('icon-moon');

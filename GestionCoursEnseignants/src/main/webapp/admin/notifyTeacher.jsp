@@ -26,7 +26,7 @@
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-brand">
-            <h5><i class="bi bi-mortarboard-fill"></i> Kiaalap</h5>
+            <h5><i class="bi bi-mortarboard-fill"></i> ENSA</h5>
             <button type="button" class="sidebar-close" id="sidebarClose"><i class="bi bi-x-lg"></i></button>
         </div>
     </div>

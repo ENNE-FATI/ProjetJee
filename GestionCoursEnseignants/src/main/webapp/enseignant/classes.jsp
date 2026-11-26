@@ -14,10 +14,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Courses — ENSA</title>
-    
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/enseignant/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/enseignant/css/style.css">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
             --ensa-yellow: #ffbc3b;
             --ensa-yellow-hover: #e0a330;
             --ensa-dark: #222;
+            --ensa-green: #194b38;
         }
 
         /* FORCE LE MODE CLAIR */
@@ -47,15 +48,15 @@
         }
 
         /* --- THEME TOGGLE --- */
-        .theme-toggle-btn { 
-            background: #fff; border: 1px solid #e9ecef; color: #333; 
-            border-radius: 8px; width: 40px; height: 40px; 
-            display: flex; align-items: center; justify-content: center; 
+        .theme-toggle-btn {
+            background: #fff; border: 1px solid #e9ecef; color: #333;
+            border-radius: 8px; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: 0.2s;
         }
         .theme-toggle-btn:hover { background: #f8f9fa; border-color: var(--ensa-yellow); }
 
-        /* --- CUSTOM GRID FOR COURSES --- */
+        /* --- COURSE GRID --- */
         .course-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -75,7 +76,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .course-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -90,7 +90,6 @@
             align-items: flex-end;
             padding: 1rem;
         }
-
         .course-code {
             background: rgba(255, 255, 255, 0.9);
             color: var(--ensa-dark);
@@ -101,25 +100,9 @@
             letter-spacing: 1px;
         }
 
-        .course-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .course-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--ensa-dark) !important;
-            margin-bottom: 0.5rem;
-        }
-
-        .course-meta {
-            font-size: 0.9rem;
-            color: #6c757d !important;
-            margin-bottom: 1.5rem;
-        }
+        .course-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .course-title { font-size: 1.25rem; font-weight: 700; color: var(--ensa-dark) !important; margin-bottom: 0.5rem; }
+        .course-meta { font-size: 0.9rem; color: #6c757d !important; margin-bottom: 1.5rem; }
 
         .btn-view {
             margin-top: auto;
@@ -131,11 +114,70 @@
             padding: 8px 20px;
             border-radius: 8px;
             transition: 0.2s;
+            cursor: pointer;
         }
+        .btn-view:hover { background-color: var(--ensa-yellow-hover); color: var(--ensa-dark); }
 
-        .btn-view:hover {
-            background-color: var(--ensa-yellow-hover);
+        /* --- COURSE DETAILS POPUP --- */
+        .course-modal .modal-content { border: 0; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+        .course-modal-hero {
+            background: linear-gradient(135deg, var(--ensa-green) 0%, #123b2d 100%);
+            padding: 28px 28px 24px;
+            position: relative;
+            color: #fff;
+        }
+        .course-modal-hero .btn-close {
+            position: absolute; top: 18px; right: 18px;
+            filter: invert(1) grayscale(1) brightness(2);
+            opacity: .8;
+        }
+        .course-modal-code {
+            display: inline-block;
+            background: var(--ensa-yellow);
             color: var(--ensa-dark);
+            font-weight: 800;
+            font-size: .8rem;
+            letter-spacing: 1.5px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .course-modal-title { color: #fff !important; font-size: 1.6rem; font-weight: 800; margin: 0; }
+
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 22px; }
+        .info-item {
+            background: #f8f9fb;
+            border: 1px solid #eceff3;
+            border-radius: 14px;
+            padding: 14px 16px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .info-item.full { grid-column: 1 / -1; }
+        .info-icon {
+            width: 42px; height: 42px; flex-shrink: 0;
+            border-radius: 12px;
+            background: rgba(255,188,59,.18);
+            color: #c98400;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .info-label { font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; color: #8a94a0; font-weight: 700; }
+        .info-value { font-size: 1.02rem; font-weight: 700; color: var(--ensa-dark); }
+
+        .action-title { font-size: .75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #8a94a0; font-weight: 700; margin-bottom: 10px; }
+        .action-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .action-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 14px; border-radius: 12px;
+            font-weight: 700; text-decoration: none; border: 0; cursor: pointer;
+            transition: .2s; font-size: .95rem;
+        }
+        .action-btn.primary { background: var(--ensa-yellow); color: var(--ensa-dark); }
+        .action-btn.primary:hover { background: var(--ensa-yellow-hover); color: var(--ensa-dark); }
+        .action-btn.secondary { background: #fff; color: var(--ensa-green); border: 2px solid var(--ensa-green); }
+        .action-btn.secondary:hover { background: var(--ensa-green); color: #fff; }
+
+        @media (max-width: 575px) {
+            .info-grid, .action-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -161,14 +203,13 @@
             <p class="side-heading text-uppercase text-muted small fw-bold mt-3">Teaching</p>
             <ul class="side-list">
                 <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/dashboard"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span class="side-label ms-2">Dashboard</span></a></li>
-                
-                <!-- LIEN ACTIF ICI -->
-                <li><a class="side-link active" href="${pageContext.request.contextPath}/enseignant/classes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="side-label ms-2">My Courses</span></a></li>
-                
-                <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/gradebook.jsp"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 9v12"/></svg><span class="side-label ms-2">Gradebook</span></a></li>
-                <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/assignments.jsp"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg><span class="side-label ms-2">Assignments</span></a></li>
 
-                <!-- BOUTON ZOOM AJOUTÉ ICI -->
+                <li><a class="side-link active" href="${pageContext.request.contextPath}/enseignant/classes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="side-label ms-2">My Courses</span></a></li>
+
+                <%-- IMPORTANT : on passe par le SERVLET (et non ressources.jsp) pour charger les cours --%>
+                <li><a class="side-link" href="${pageContext.request.contextPath}/enseignant/ressources"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 9v12"/></svg><span class="side-label ms-2">My Ressources</span></a></li>
+
+
                 <li>
                     <a class="side-link" href="#" data-bs-toggle="modal" data-bs-target="#addZoomModal">
                         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
@@ -207,7 +248,7 @@
             </section>
 
             <c:if test="${not empty erreur}">
-                <div class="alert alert-danger rounded-3 border-0 shadow-sm">${erreur}</div>
+                <div class="alert alert-danger rounded-3 border-0 shadow-sm"><c:out value="${erreur}"/></div>
             </c:if>
 
             <!-- COURSE GRID -->
@@ -216,12 +257,21 @@
                     <li>
                         <article class="course-card">
                             <div class="course-cover">
-                                <span class="course-code">${aff.cours.code}</span>
+                                <span class="course-code"><c:out value="${aff.cours.code}"/></span>
                             </div>
                             <div class="course-body">
-                                <h2 class="course-title">${aff.cours.intitule}</h2>
-                                <p class="course-meta"><i class="bi bi-calendar me-1"></i> Year: ${aff.anneeUniversitaire.libelle}</p>
-                                <a href="#" class="btn-view">View Course</a>
+                                <h2 class="course-title"><c:out value="${aff.cours.intitule}"/></h2>
+                                <p class="course-meta"><i class="bi bi-calendar me-1"></i> Year: <c:out value="${aff.anneeUniversitaire.libelle}"/></p>
+
+                                <!-- Bouton qui ouvre le popup avec les détails du cours -->
+                                <button type="button" class="btn-view js-view-course"
+                                        data-id="${aff.cours.id}"
+                                        data-code="<c:out value='${aff.cours.code}'/>"
+                                        data-intitule="<c:out value='${aff.cours.intitule}'/>"
+                                        data-volume="${aff.cours.volumeHoraire}"
+                                        data-year="<c:out value='${aff.anneeUniversitaire.libelle}'/>">
+                                    View Course
+                                </button>
                             </div>
                         </article>
                     </li>
@@ -234,10 +284,71 @@
                 </c:if>
             </ul>
         </main>
-        
+
         <footer class="app-footer text-center py-4 text-muted small">
             <p class="mb-0">© 2024 ENSA · Teacher Portal</p>
         </footer>
+    </div>
+</div>
+
+<!-- ================= POPUP : DÉTAILS DU COURS ================= -->
+<div class="modal fade course-modal" id="courseModal" tabindex="-1" aria-labelledby="courseModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="course-modal-hero">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span class="course-modal-code" id="cmCode">CODE</span>
+                <h2 class="course-modal-title" id="courseModalTitle">Course title</h2>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Total hours</div>
+                            <div class="info-value"><span id="cmVolume">0</span> h</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Academic year</div>
+                            <div class="info-value" id="cmYear">-</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item full">
+                        <div class="info-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Teacher</div>
+                            <div class="info-value"><c:out value="${sessionScope.user.prenom}"/> <c:out value="${sessionScope.user.nom}"/></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="action-title">Quick actions</p>
+                <div class="action-row">
+                    <a class="action-btn primary" href="${pageContext.request.contextPath}/enseignant/ressources">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                        Add a resource
+                    </a>
+                    <button type="button" class="action-btn secondary" id="cmZoomBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        Schedule Zoom
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -253,16 +364,15 @@
                 <form action="${pageContext.request.contextPath}/ajouterSeanceZoom" method="POST">
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Select Course</label>
-                        <select class="form-select" name="cours_id" required>
+                        <select class="form-select" name="cours_id" id="zoomCoursSelect" required>
                             <option value="">Choose a course...</option>
                             <c:forEach var="aff" items="${listeClasses}">
-                                <!-- On utilise aff.cours.id pour la valeur et aff.cours.intitule pour le texte -->
-                                <option value="${aff.cours.id}">${aff.cours.intitule}</option>
+                                <option value="${aff.cours.id}"><c:out value="${aff.cours.intitule}"/></option>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Date & Time</label>
+                        <label class="form-label fw-semibold">Date &amp; Time</label>
                         <input type="datetime-local" class="form-control" name="dateHeure" required>
                     </div>
                     <div class="mb-3">
@@ -285,14 +395,18 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.setAttribute('data-bs-theme', 'light');
-        
+
+        /* ---------- Thème ---------- */
         const btn = document.getElementById('theme-toggle');
         const sun = document.getElementById('icon-sun');
         const moon = document.getElementById('icon-moon');
         const html = document.documentElement;
         let theme = 'light';
 
-        function updateIcons(t) { if (t === 'dark') { sun.style.display = 'block'; moon.style.display = 'none'; } else { sun.style.display = 'none'; moon.style.display = 'block'; } }
+        function updateIcons(t) {
+            if (t === 'dark') { sun.style.display = 'block'; moon.style.display = 'none'; }
+            else { sun.style.display = 'none'; moon.style.display = 'block'; }
+        }
         updateIcons(theme);
         if (btn) {
             btn.addEventListener('click', () => {
@@ -301,6 +415,39 @@
                 updateIcons(theme);
             });
         }
+
+        /* ---------- Popup "View Course" ---------- */
+        const courseModalEl = document.getElementById('courseModal');
+        const zoomModalEl = document.getElementById('addZoomModal');
+        const courseModal = new bootstrap.Modal(courseModalEl);
+        const zoomModal = new bootstrap.Modal(zoomModalEl);
+        let currentCourseId = '';
+
+        document.querySelectorAll('.js-view-course').forEach(button => {
+            button.addEventListener('click', () => {
+                const d = button.dataset;
+                currentCourseId = d.id || '';
+
+                // textContent => pas de risque d'injection HTML
+                document.getElementById('cmCode').textContent = d.code || '';
+                document.getElementById('courseModalTitle').textContent = d.intitule || '';
+                document.getElementById('cmVolume').textContent = d.volume || '0';
+                document.getElementById('cmYear').textContent = d.year || '-';
+
+                courseModal.show();
+            });
+        });
+
+        // Bouton "Schedule Zoom" du popup : ferme le popup et ouvre le formulaire Zoom avec le cours présélectionné
+        document.getElementById('cmZoomBtn').addEventListener('click', () => {
+            courseModalEl.addEventListener('hidden.bs.modal', function openZoom() {
+                courseModalEl.removeEventListener('hidden.bs.modal', openZoom);
+                const select = document.getElementById('zoomCoursSelect');
+                if (select) select.value = currentCourseId;
+                zoomModal.show();
+            });
+            courseModal.hide();
+        });
     });
 </script>
 </body>

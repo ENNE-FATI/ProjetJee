@@ -45,6 +45,23 @@ public class CoursDAO {
         }
     }
 
+    // Récupérer les cours affectés à un enseignant spécifique
+    public List<Cours> getCoursByEnseignant(int enseignantId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            // On passe par l'entité Affectation qui fait le lien entre Enseignant et Cours
+            // Adaptez "a.enseignant.id" et "a.cours" selon les noms exacts de vos attributs dans Affectation
+            String hql = "SELECT a.cours FROM Affectation a WHERE a.enseignant.id = :ensId";
+            Query<Cours> query = session.createQuery(hql, Cours.class);
+            query.setParameter("ensId", enseignantId);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Ou une liste vide
+        } finally {
+            session.close();
+        }
+    }
     public boolean modifierCours(Cours cours) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
